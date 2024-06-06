@@ -24,6 +24,7 @@ namespace SistemaHorario.Repositories
         {
             return conexion.Table<Clase>().OrderBy(x => x.HoraInicio);
         }
+
         public IEnumerable<Clase> GetDay(string dia)
         {
             return conexion.Table<Clase>().Where(x => x.Dia == dia);
@@ -43,5 +44,7 @@ namespace SistemaHorario.Repositories
         {
             conexion.Delete(clase);
         }
+
+      
     }
 }

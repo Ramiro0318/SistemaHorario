@@ -14,38 +14,37 @@ namespace SistemaHorario.Repositories
 {
     public class ActividadRespository
     {
-        SQLiteConnection conexion;
+        SQLiteConnection conexionA;
 
         public ActividadRespository()
         {
-            //conexion = new("data/actividades.sqlite");
             var ruta = "actividades.sqlite";
-            conexion = new SQLiteConnection(ruta);
-            conexion.CreateTable<Actividad>();
+            conexionA = new SQLiteConnection(ruta);
+            conexionA.CreateTable<Actividad>();
         }
 
         public IEnumerable<Actividad> GetAll()
         {
-            return conexion.Table<Actividad>().OrderBy(x => x.HoraInicio);
+            return conexionA.Table<Actividad>().OrderBy(x => x.HoraInicio);
         }
         public IEnumerable<Actividad> GetDay(string dia)
         {
-            return conexion.Table<Actividad>().Where(x => x.Dia == dia);
+            return conexionA.Table<Actividad>().Where(x => x.Dia == dia).OrderBy(x => x.HoraInicio);
         }
 
         public void Insert(Actividad actividad)
         {
-            conexion.Insert(actividad);
+            conexionA.Insert(actividad);
         }
 
         public void Update(Actividad actividad) 
         { 
-            conexion.Update(actividad);
+            conexionA.Update(actividad);
         }
 
         public void Delete(Actividad actividad) 
         {
-            conexion.Delete(actividad);
+            conexionA.Delete(actividad);
         }
     }
 }
