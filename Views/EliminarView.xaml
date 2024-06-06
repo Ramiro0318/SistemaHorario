@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="SistemaHorario.Views.EliminarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaHorario.Views"
+             xmlns:viewmodel="clr-namespace:SistemaHorario.ViewModels"
+    mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="600"
+             Background="#0C808080"
+             >
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="Margin" Value="8"></Setter>
+            <Setter Property="Padding" Value="5,2,5,2"></Setter>
+        </Style>
+    </UserControl.Resources>
+    
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkOrange">
+        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" FontWeight="SemiBold">
+            ¿Desea eliminar la actividad?
+        </TextBlock>
+        <WrapPanel HorizontalAlignment="Center">
+
+            <Button Content="Aceptar" Command="{Binding EliminarCommand}"></Button>
+            <Button Content="Canelar" Command="{Binding CancelarCommand}"></Button>
+        </WrapPanel>
+    </StackPanel>
+</UserControl>

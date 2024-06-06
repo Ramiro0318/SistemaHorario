@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="SistemaHorario.Views.ActividadCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SistemaHorario.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:viewmodels="clr-namespace:SistemaHorario.ViewModels" 
+             d:DataContext="{d:DesignInstance Type=viewmodels:HorarioViewModel}">
+    <StackPanel>
+        <TextBlock Text="{Binding Nombre}"></TextBlock>
+        <TextBlock Text="{Binding Dia}"></TextBlock>
+        <TextBlock Text="{Binding Descripcion}" MinHeight="0"></TextBlock>
+        <TextBlock >
+            <Run Text="{Binding HoraInicio}"></Run>
+            <Run Text="-"></Run>
+            <Run Text="{Binding HoraFin}"></Run>
+        </TextBlock>
+        <TextBlock Text="{Binding Asignatura}" MinHeight="0"></TextBlock>
+        <TextBlock Text="{Binding Aula}" MinHeight="0"></TextBlock>
+        <TextBlock Text="{Binding Maestro}" MinHeight="0"></TextBlock>
+    </StackPanel>
+</UserControl>
