@@ -309,8 +309,8 @@ namespace SistemaHorario.ViewModels
              HoraInicio < TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraFin, "H:mm") );
             
             bool ActEmpalmada2 = repositoryClase.GetDay(Actividad.Dia).Any(x =>
-            (HoraInicio <= TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm")) ||
-             HoraInicio <  TimeOnly.ParseExact(x.HoraFin, "H:mm") && HoraFin >=   TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
+            (HoraInicio < TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm")) ||
+             HoraInicio <  TimeOnly.ParseExact(x.HoraFin, "H:mm") && HoraFin >   TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
              HoraInicio >  TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin < TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
              HoraInicio <  TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraFin, "H:mm"));
             if (ActEmpalmada || ActEmpalmada2)
@@ -350,8 +350,8 @@ namespace SistemaHorario.ViewModels
              HoraInicio < TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraFin, "H:mm"));
 
             bool ClaseEmpalmada2 = repositoryClase.GetDay(Clase.Dia).Any(x =>
-            (HoraInicio <= TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm")) ||
-             HoraInicio <  TimeOnly.ParseExact(x.HoraFin, "H:mm") && HoraFin >=    TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
+            (HoraInicio < TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm")) ||
+             HoraInicio <  TimeOnly.ParseExact(x.HoraFin, "H:mm") && HoraFin >    TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
              HoraInicio >  TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin < TimeOnly.ParseExact(x.HoraFin, "H:mm") ||
              HoraInicio <  TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin > TimeOnly.ParseExact(x.HoraFin, "H:mm"));
             if (ClaseEmpalmada || ClaseEmpalmada2)
