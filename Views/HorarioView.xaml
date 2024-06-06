@@ -17,11 +17,13 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <Grid DockPanel.Dock="Top" Margin="8">
-            <Label  DockPanel.Dock="Top" FontSize="20" FontWeight="DemiBold">Horario</Label>
-            <Button Command="{Binding IrAgregarCommand}" HorizontalAlignment="Right" FontSize="18" FontWeight="DemiBold">Agregar actividad +</Button>
+        <Grid DockPanel.Dock="Top" Background="PowderBlue">
+            <Label  DockPanel.Dock="Top" FontSize="22" FontWeight="Bold" Margin="10,0,0,0">Horario</Label>
+            <Button Command="{Binding IrAgregarCommand}" Margin="0,0,20,0" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent">
+                <Image Source="/Views/agg.png" MaxHeight="35" MaxWidth="35"/>
+            </Button>
         </Grid>
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -32,89 +34,11 @@
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Center">
-
-                <DataGrid x:Name="GridHorario" ItemsSource="{Binding Horario3}" SelectedItem="{Binding Actividad}" AutoGenerateColumns="False"
-                          CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" IsReadOnly="True" ContextMenu="{StaticResource Menu1}">
-                    <DataGrid.Resources>
-                        <viewmodels:HorarioViewModel x:Key="viewmodel"></viewmodels:HorarioViewModel>
-                    </DataGrid.Resources>
-
-                    <DataGrid.Columns>
-                        
-                        <DataGridTemplateColumn Header="Domingo" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Lunes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        
-                        <DataGridTemplateColumn Header="Martes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Martes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Martes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Martes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTemplateColumn Header="Martes" Width=".7*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <local:ActividadCell></local:ActividadCell>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        
-                        <DataGridTextColumn Binding="{Binding Nombre}" Header="Lun" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Descripcion}" Header="Mar" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Mier" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Jue" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Vier" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Sab" Width=".7*"></DataGridTextColumn>
-                        <DataGridTextColumn Header="Dom" Width=".7*"></DataGridTextColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </ScrollViewer>-->
-
 
                 <StackPanel Grid.Column="0">
 
                     <Label Content="Domingo"></Label>
-                    <ListBox Name="Domingo" ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Domingo" ItemsSource="{Binding Domingo}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -131,47 +55,9 @@
 
                 </StackPanel>
 
-
-                <!--<StackPanel>
-                    <Label Content="Domingo"></Label>
-                    <ListBox Name="Domingo" ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <local:ActividadCell></local:ActividadCell>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Dia}" Value="dom">
-                                        <Setter Property="TextBlock.Foreground" Value="Red" />
-                                        <Setter Property="Content"></Setter>
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>-->
-
-
-
-
-                <!--<StackPanel Grid.Column="0">
-                    <Label Content="Domingo"></Label>
-                    <ListBox Name="Domingo" ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
-                        <ListBox.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel></StackPanel>
-                            </ItemsPanelTemplate>
-                        </ListBox.ItemsPanel>
-
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <local:ActividadCell></local:ActividadCell>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
-                </StackPanel>-->
-
                 <StackPanel Grid.Column="1">
                     <Label Content="Lunes"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" >
+                    <ListBox Name="Lunes" ItemsSource="{Binding Lunes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" >
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -187,7 +73,7 @@
 
                 <StackPanel Grid.Column="2">
                     <Label Content="Martes"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Martes" ItemsSource="{Binding Martes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -203,7 +89,7 @@
 
                 <StackPanel Grid.Column="3">
                     <Label Content="Miercoles"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Miercoles" ItemsSource="{Binding Miercoles}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -219,7 +105,7 @@
 
                 <StackPanel Grid.Column="4">
                     <Label Content="Jueves"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Jueves" ItemsSource="{Binding Jueves}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -235,7 +121,7 @@
 
                 <StackPanel Grid.Column="5">
                     <Label Content="Viernes"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Viernes" ItemsSource="{Binding Viernes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -251,7 +137,7 @@
 
                 <StackPanel Grid.Column="6">
                     <Label Content="Sabado"></Label>
-                    <ListBox ItemsSource="{Binding Horario3}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <ListBox Name="Sabado" ItemsSource="{Binding Sabado}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>

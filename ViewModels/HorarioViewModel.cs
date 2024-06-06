@@ -33,7 +33,13 @@ namespace SistemaHorario.ViewModels
 
         public ObservableCollection<Actividad> Horario { get; set; } = new();
         public ObservableCollection<Clase> Horario2 { get; set; } = new();
-        public ObservableCollection<Object> Horario3 { get; set; } = new();
+        public ObservableCollection<Object> Domingo { get; set; } = new();
+        public ObservableCollection<Object> Lunes { get; set; } = new();
+        public ObservableCollection<Object> Martes { get; set; } = new();
+        public ObservableCollection<Object> Miercoles { get; set; } = new();
+        public ObservableCollection<Object> Jueves { get; set; } = new();
+        public ObservableCollection<Object> Viernes { get; set; } = new();
+        public ObservableCollection<Object> Sabado { get; set; } = new();
         public Actividad? Actividad { get; set; }
         public Clase? Clase { get; set; }
         public Object? Object { get; set; }
@@ -89,7 +95,7 @@ namespace SistemaHorario.ViewModels
         public ICommand IrEditarCommand { get; set; }
         public ICommand EditarCommand { get; set; }
         public ICommand CancelarCommand { get; set; }
-        
+
 
         public HorarioViewModel()
         {
@@ -187,7 +193,7 @@ namespace SistemaHorario.ViewModels
                 Ventana = Ventanas.Editar;
                 Actualizar(nameof(Ventana));
             }
-           
+
         }
 
         private void Editar()
@@ -196,7 +202,7 @@ namespace SistemaHorario.ViewModels
             {
                 if (Actividad != null)
                 {
-                    //ValidarAct();
+                    Validar(Actividad);
                     Actualizar(nameof(Error));
 
                     if (Error == "")
@@ -211,7 +217,7 @@ namespace SistemaHorario.ViewModels
             {
                 if (Clase != null)
                 {
-                    //Validar !
+                    Validar(Clase);
                     Actualizar(nameof(Error));
 
                     if (Error == "")
@@ -252,24 +258,108 @@ namespace SistemaHorario.ViewModels
             Ventana = Ventanas.Horario;
             Actualizar(nameof(Ventana));
         }
-        
 
         private void Cargar()
         {
-            Horario.Clear();
-            Horario2.Clear();
-            Horario3.Clear();
+            //Horario.Clear();
+            //Horario2.Clear();
+            Domingo.Clear();
+            Lunes.Clear();
+            Martes.Clear();
+            Miercoles.Clear();
+            Jueves.Clear();
+            Viernes.Clear();
+            Sabado.Clear();
 
-            var a = repositoryAct.GetAll();
-            foreach (var item in a)
+            //var a = repositoryAct.GetAll();
+            //foreach (var item in a)
+            //{
+
+            //    Domingo.Add(item);
+            //}
+            //var b = repositoryClase.GetAll();
+            //foreach (var item in b)
+            //{
+            //    Domingo.Add(item);
+            //}
+
+            var domingoAct = repositoryAct.GetDomingo();
+            foreach (var item in domingoAct)
             {
-                Horario3.Add(item);
+                Domingo.Add(item);
             }
-            var b = repositoryClase.GetAll();
-            foreach (var item in b)
+            var domingoClase = repositoryClase.GetDomingo();
+            foreach (var item in domingoClase)
             {
-                Horario3.Add(item);
+                Domingo.Add(item);
             }
+
+            var lunesAct = repositoryAct.GetLunes();
+            foreach (var item in lunesAct)
+            {
+                Lunes.Add(item);
+            }
+            var lunesClase = repositoryClase.GetLunes();
+            foreach (var item in lunesClase)
+            {
+                Lunes.Add(item);
+            }
+
+            var martesAct = repositoryAct.GetMartes();
+            foreach (var item in martesAct)
+            {
+                Martes.Add(item);
+            }
+            var martesClase = repositoryClase.GetMartes();
+            foreach (var item in martesClase)
+            {
+                Martes.Add(item);
+            }
+
+            var miercolesAct = repositoryAct.GetMiercoles();
+            foreach (var item in miercolesAct)
+            {
+                Miercoles.Add(item);
+            }
+            var miercolesClase = repositoryClase.GetMiercoles();
+            foreach (var item in miercolesClase)
+            {
+                Miercoles.Add(item);
+            }
+
+            var juevesAct = repositoryAct.GetJueves();
+            foreach (var item in juevesAct)
+            {
+                Jueves.Add(item);
+            }
+            var juevesClase = repositoryClase.GetJueves();
+            foreach (var item in juevesClase)
+            {
+                Jueves.Add(item);
+            }
+
+            var viernesAct = repositoryAct.GetViernes();
+            foreach (var item in viernesAct)
+            {
+                Viernes.Add(item);
+            }
+            var viernesClase = repositoryClase.GetViernes();
+            foreach (var item in viernesClase)
+            {
+                Viernes.Add(item);
+            }
+
+            var sabadoAct = repositoryAct.GetSabado();
+            foreach (var item in sabadoAct)
+            {
+                Sabado.Add(item);
+            }
+            var sabadoClase = repositoryClase.GetSabado();
+            foreach (var item in sabadoAct)
+            {
+                Sabado.Add(item);
+            }
+
         }
 
         private void Validar(Actividad Actividad)
@@ -311,8 +401,9 @@ namespace SistemaHorario.ViewModels
             {
                 Error += "\n Indique correctamente la hora";
             }
-            if (string.IsNullOrWhiteSpace(Clase.Asignatura) || string.IsNullOrWhiteSpace(Clase.Maestro) 
-                || string.IsNullOrWhiteSpace(Clase.Aula)) {
+            if (string.IsNullOrWhiteSpace(Clase.Asignatura) || string.IsNullOrWhiteSpace(Clase.Maestro)
+                || string.IsNullOrWhiteSpace(Clase.Aula))
+            {
 
                 Error += "\n Indique correctamente la información de la clase";
             }

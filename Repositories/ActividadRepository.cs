@@ -28,6 +28,36 @@ namespace SistemaHorario.Repositories
             return conexion.Table<Actividad>().OrderBy(x => x.HoraInicio);
         }
 
+        public IEnumerable<Actividad> GetDomingo() 
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "dom");
+        }
+        public IEnumerable<Actividad> GetLunes()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "lun");
+        }
+        public IEnumerable<Actividad> GetMartes()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "mar");
+        }
+        public IEnumerable<Actividad> GetMiercoles()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "mie");
+        }
+        public IEnumerable<Actividad> GetJueves()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "jue");
+        }
+        public IEnumerable<Actividad> GetViernes()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "vie");
+        }
+        public IEnumerable<Actividad> GetSabado()
+        {
+            return conexion.Table<Actividad>().Where(x => x.Dia == "sab");
+        }
+
+
         public void Insert(Actividad actividad)
         {
             conexion.Insert(actividad);
