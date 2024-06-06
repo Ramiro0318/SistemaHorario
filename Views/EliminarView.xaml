@@ -7,7 +7,7 @@
              xmlns:viewmodel="clr-namespace:SistemaHorario.ViewModels"
     mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600"
-             Background="#0C808080"
+             Background="#A5514C4C"
              >
     <UserControl.Resources>
         <Style TargetType="Button">
@@ -17,8 +17,8 @@
             <Setter Property="Padding" Value="5,2,5,2"></Setter>
         </Style>
     </UserControl.Resources>
-    
-    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Background="DarkOrange">
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Background="#FFBBBBBB">
         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="32" FontWeight="SemiBold">
             ¿Desea eliminar la actividad?
         </TextBlock>

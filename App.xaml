@@ -6,7 +6,7 @@
     <Application.Resources>
         <Style TargetType="Label">
             <Style.Setters>
-                <Setter Property="FontSize" Value="14"></Setter>
+                <Setter Property="FontSize" Value="16"></Setter>
                 <Setter Property="FontWeight" Value="Medium"></Setter>
             </Style.Setters>
         </Style>

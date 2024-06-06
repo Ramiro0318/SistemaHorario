@@ -20,7 +20,7 @@
     <Grid>
 
         <DockPanel Background="White">
-            <Label DockPanel.Dock="Top" Background="PowderBlue" FontSize="20">
+            <Label DockPanel.Dock="Top" Background="#FF7CA7AC" FontSize="20">
                 <Label.Style>
                     <Style TargetType="Label">
                         <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
@@ -58,7 +58,7 @@
                     </ComboBox>
 
                     <DockPanel Margin="7,8,7,0">
-                        <Label Width="170">Nombre de la actividad</Label>
+                        <Label Width="190">Nombre de la actividad</Label>
                         <TextBox>
                             <TextBox.Style>
                                 <Style TargetType="TextBox">
@@ -77,9 +77,9 @@
                         </TextBox>
                     </DockPanel>
 
-                    <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
-                        <DockPanel Margin="3,10">
-                            <Label Content="Día"></Label>
+                    <StackPanel Margin="10,4,0,0" Orientation="Horizontal">
+                        <DockPanel Margin="10,10,10,10">
+                            <Label Content="Día" Margin="0,0,5,0"></Label>
                             <ComboBox>
                                 <ComboBox.Style>
                                     <Style TargetType="ComboBox">
@@ -87,8 +87,9 @@
                                         <Setter Property="SelectedValue" Value="{Binding Actividad.Dia}"></Setter>
                                         <Setter Property="Width" Value="55"></Setter>
                                         <Setter Property="FontSize" Value="16"></Setter>
-                                        <Setter Property="SelectedIndex" Value="0"></Setter>
                                         <Setter Property="MinWidth" Value="95"></Setter>
+                                        <Setter Property="SelectedIndex" Value="0"></Setter>
+                                        
                                         <Setter Property="ItemsSource" Value="{Binding ListaDias}"></Setter>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
@@ -102,7 +103,7 @@
                         </DockPanel>
 
                         <DockPanel Margin="10">
-                            <Label Content="Hora de inicio"></Label>
+                            <Label Content="Hora de inicio" Margin="0,0,5,0"></Label>
                             <xctk:TimePicker>
                                 <xctk:TimePicker.Style>
                                     <Style TargetType="xctk:TimePicker">
@@ -123,7 +124,7 @@
                             </xctk:TimePicker>
                         </DockPanel>
                         <DockPanel Margin="10">
-                            <Label Content="Hora fin"></Label>
+                            <Label Content="Hora fin" Margin="0,0,5,0"></Label>
                             <xctk:TimePicker>
                                 <xctk:TimePicker.Style>
                                     <Style TargetType="xctk:TimePicker">
@@ -146,7 +147,7 @@
                     </StackPanel>
 
                     <DockPanel Margin="5">
-                        <Label Width="170">Nombre de la asignatura</Label>
+                        <Label Width="190">Nombre de la asignatura</Label>
                         <TextBox Text="{Binding Clase.Asignatura}">
                             <TextBox.Style>
                                 <Style TargetType="TextBox">
@@ -161,7 +162,7 @@
                     </DockPanel>
 
                     <DockPanel Margin="5">
-                        <Label Width="170">Aula</Label>
+                        <Label Width="190">Aula</Label>
                         <TextBox Text="{Binding Clase.Aula}">
                             <TextBox.Style>
                                 <Style TargetType="TextBox">
@@ -176,7 +177,7 @@
                     </DockPanel>
 
                     <DockPanel Margin="5">
-                        <Label Width="170">Nombre del maestro</Label>
+                        <Label Width="190">Nombre del maestro</Label>
                         <TextBox Text="{Binding Clase.Maestro}">
                             <TextBox.Style>
                                 <Style TargetType="TextBox">
@@ -214,9 +215,9 @@
                                     <Setter Property="Command" Value="{Binding AgregarCommand}"></Setter>
                                     <Setter Property="CommandParameter" Value="{Binding .}"></Setter>
                                     <Setter Property="Content" Value="Aceptar"></Setter>
-                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="FontSize" Value="17"></Setter>
                                     <Setter Property="FontWeight" Value="Medium"></Setter>
-                                    <Setter Property="Margin" Value="5"></Setter>
+                                    <Setter Property="Margin" Value="8,5"></Setter>
                                     <Setter Property="Padding" Value="3"></Setter>
                                     <Setter Property="Width" Value="80"></Setter>
                                     <Style.Triggers>
@@ -228,7 +229,7 @@
                                 </Style>
                             </Button.Style>
                         </Button>
-                        <Button Command="{Binding CancelarCommand}" FontSize="16" Margin="5" Padding="3" FontWeight="Medium" Width="80">Cancelar</Button>
+                        <Button Command="{Binding CancelarCommand}" FontSize="16" Margin="8,5" Padding="3" FontWeight="Medium" Width="80">Cancelar</Button>
                     </WrapPanel>
                 </StackPanel>
             </ScrollViewer>

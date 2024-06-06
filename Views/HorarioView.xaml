@@ -22,7 +22,7 @@
     </UserControl.Resources>
 
     <DockPanel>
-        <Grid DockPanel.Dock="Top" Background="PowderBlue">
+        <Grid DockPanel.Dock="Top" Background="#FF7CA7AC">
             <Border BorderBrush="Black" BorderThickness="1">
                 <Label DockPanel.Dock="Top" FontSize="22" FontWeight="Bold" Margin="10,0,0,0" HorizontalAlignment="Left">Horario</Label>
             </Border>
@@ -137,7 +137,7 @@
 
                 <StackPanel Grid.Column="5" Background="#FF677070">
                     <Label Content="Viernes"></Label>
-                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <Polyline Points="0,0 318,0" Stroke="Black" StrokeThickness="3"></Polyline>
                     <ListBox Name="Viernes" ItemsSource="{Binding Viernes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
                              Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>

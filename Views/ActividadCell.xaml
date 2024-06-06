@@ -13,7 +13,7 @@
             <Setter Property="FontSize" Value="13"></Setter>
         </Style>
     </UserControl.Resources>
-    <Border BorderBrush="DarkGray" BorderThickness="4" Width="72" Background="#05F6F6F6">
+    <Border BorderBrush="DarkGray" BorderThickness="4" Width="85" Background="#05F6F6F6">
         <StackPanel>
 
             <TextBlock Text="{Binding Nombre}" FontSize="13.5" FontWeight="DemiBold" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
