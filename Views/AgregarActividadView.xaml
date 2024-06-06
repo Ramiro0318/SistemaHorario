@@ -9,7 +9,7 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:HorarioViewModel}"
-    d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="460" d:DesignWidth="625">
 
     <UserControl.Resources>
         <Style TargetType="TextBox">
@@ -17,219 +17,221 @@
         </Style>
     </UserControl.Resources>
 
-    <DockPanel Background="White">
-        <Label DockPanel.Dock="Top" Background="PowderBlue" FontSize="20">
-            <Label.Style>
-                <Style TargetType="Label">
-                    <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
-                    <Setter Property="Content" Value="Agregar actividad"></Setter>
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Editar}">
-                            <Setter Property="Content" Value="Editar actividad"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </Label.Style>
-        </Label>
-        <ScrollViewer>
-            <StackPanel>
+    <Grid>
 
-                <ComboBox x:Name="Actividades" 
-                          SelectedItem="{Binding Path=TipoSeleccionado}" FontSize="14" HorizontalAlignment="Left" Width="200" Margin="5">
-                    <ComboBox.Style>
-                        <Style TargetType="ComboBox">
+        <DockPanel Background="White">
+            <Label DockPanel.Dock="Top" Background="PowderBlue" FontSize="20">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                        <Setter Property="Content" Value="Agregar actividad"></Setter>
+                        <Setter Property="FontSize" Value="22"></Setter>
+                        <Setter Property="FontWeight" Value="Bold"></Setter>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Editar}">
+                                <Setter Property="Content" Value="Editar actividad"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+            <ScrollViewer Background="#5b7576">
+                <StackPanel>
 
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Editar}">
-                                    <Setter Property="Visibility" Value="Hidden"></Setter>
+                    <ComboBox x:Name="Actividades" 
+                          SelectedItem="{Binding Path=TipoSeleccionado}" FontSize="16" FontWeight="Medium" HorizontalAlignment="Left" Width="200" 
+                              Margin="5" Background="#FFBBBBBB">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
 
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ComboBox.Style>
-                    <x:Static Member="viewmodels:Tipos.Clase"></x:Static>
-                    <x:Static Member="viewmodels:Tipos.Actividad"></x:Static>
-                </ComboBox>
-
-                <DockPanel Margin="5">
-                    <Label Width="170">Nombre de la actividad</Label>
-                    <!--<TextBox Text="{Binding Actividad.Nombre}"  FontSize="14"></TextBox>-->
-                    <TextBox>
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Text" Value="{Binding Actividad.Nombre}"></Setter>
-                                <Setter Property="FontSize" Value="14"></Setter>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
-                                        <Setter Property="Text" Value="{Binding Clase.Nombre}"></Setter>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </DockPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <DockPanel Margin="10">
-                        <Label Content="Día"></Label>
-                        <!--SelectedItem="{MultiBinding Actividad.Dia, Clase.Dia}"-->
-                        <!--SelectedValue="{Binding Actividad.Dia}"-->
-                        <!--<ComboBox    Width="55" SelectedIndex="0" FontSize="14">
-                            <ComboBox.SelectedValue>
-                                <MultiBinding StringFormat="{}{0} {1}">
-                                    <Binding Path="Actividad.Dia"></Binding>
-                                    <Binding Path="Clase.Dia"></Binding>
-                                </MultiBinding>
-                            </ComboBox.SelectedValue>
-                            <x:Static Member="viewmodels:Dia.dom"></x:Static>
-                            <x:Static Member="viewmodels:Dia.lun"></x:Static>
-                            <x:Static Member="viewmodels:Dia.mar"></x:Static>
-                            <x:Static Member="viewmodels:Dia.mie"></x:Static>
-                            <x:Static Member="viewmodels:Dia.jue"></x:Static>
-                            <x:Static Member="viewmodels:Dia.vie"></x:Static>
-                            <x:Static Member="viewmodels:Dia.sab"></x:Static>
-                        </ComboBox>-->
-                        <ComboBox>
-                            <ComboBox.Style>
-                                <Style TargetType="ComboBox">
-                                    <Setter Property="SelectedItem" Value="{Binding Actividad.Dia}"></Setter>
-                                    <Setter Property="SelectedValue" Value="{Binding Actividad.Dia}"></Setter>
-                                    <Setter Property="Width" Value="55"></Setter>
-                                    <Setter Property="FontSize" Value="14"></Setter>
-                                    <Setter Property="SelectedIndex" Value="0"></Setter>
-                                    <Setter Property="ItemsSource" Value="{Binding ListaDias}"></Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
-                                            <Setter Property="SelectedItem" Value="{Binding Clase.Dia}"></Setter>
-                                            <Setter Property="SelectedValue" Value="{Binding Clase.Dia}"></Setter>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ComboBox.Style>
-                        </ComboBox>
-                    </DockPanel>
-
-                    <DockPanel Margin="10">
-                        <Label Content="Hora de inicio"></Label>
-                        <!--<xctk:TimePicker Text="{Binding Actividad.HoraInicio}" Format="Custom" FormatString="H:mm" TimeInterval="00:20" EndTime="23:00" Width="120">-->
-                        <xctk:TimePicker>
-                            <xctk:TimePicker.Style>
-                                <Style TargetType="xctk:TimePicker">
-                                    <Setter Property="Text" Value="{Binding Actividad.HoraInicio}"></Setter>
-                                    <Setter Property="Format" Value="Custom"></Setter>
-                                    <Setter Property="FormatString" Value="H:mm"></Setter>
-                                    <Setter Property="TimeInterval" Value="00:20"></Setter>
-                                    <Setter Property="EndTime" Value="23:00"></Setter>
-                                    <Setter Property="Width" Value="120"></Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
-                                            <Setter Property="Text" Value="{Binding Clase.HoraInicio}"></Setter>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </xctk:TimePicker.Style>
-                        </xctk:TimePicker>
-                    </DockPanel>
-                    <DockPanel Margin="10">
-                        <Label Content="Hora fin"></Label>
-                        <!--<xctk:TimePicker Text="{Binding Actividad.HoraFin}"    Format="Custom" FormatString="H:mm" TimeInterval="00:20" StartTime="00:20" Width="120" ></xctk:TimePicker>-->
-                        <xctk:TimePicker>
-                            <xctk:TimePicker.Style>
-                                <Style TargetType="xctk:TimePicker">
-                                    <Setter Property="Text" Value="{Binding Actividad.HoraFin}"></Setter>
-                                    <Setter Property="Format" Value="Custom"></Setter>
-                                    <Setter Property="FormatString" Value="H:mm"></Setter>
-                                    <Setter Property="TimeInterval" Value="00:20"></Setter>
-                                    <Setter Property="StartTime" Value="00:20"></Setter>
-                                    <Setter Property="Width" Value="120"></Setter>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
-                                            <Setter Property="Text" Value="{Binding Clase.HoraFin}"></Setter>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </xctk:TimePicker.Style>
-                        </xctk:TimePicker>
-                    </DockPanel>
-                </StackPanel>
-
-                <DockPanel Margin="5">
-                    <Label Width="170">Nombre de la asignatura</Label>
-                    <TextBox Text="{Binding Clase.Asignatura}">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </DockPanel>
-
-                <DockPanel Margin="5">
-                    <Label Width="170">Aula</Label>
-                    <TextBox Text="{Binding Clase.Aula}">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </DockPanel>
-
-                <DockPanel Margin="5">
-                    <Label Width="170">Nombre del maestro</Label>
-                    <TextBox Text="{Binding Clase.Maestro}">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </DockPanel>
-
-                <StackPanel Margin="5">
-                    <Label>Descripción</Label>
-                    <TextBox Text="{Binding Actividad.Descripcion}">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Height" Value="100"></Setter>
-                                <Setter Property="Margin" Value="5"></Setter>
-                                <Setter Property="TextWrapping" Value="Wrap"></Setter>
-                                <Setter Property="IsEnabled" Value="{Binding Path=ActividadSeleccionada}"></Setter>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-
-                </StackPanel>
-                <TextBlock Text="{Binding Error}" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,5,0,0" FontSize="15" Foreground="Red"></TextBlock>
-
-                <WrapPanel HorizontalAlignment="Center">
-
-                    <!--<Button Command="{Binding AgregarCommand}" FontSize="15" Margin="5" Padding="3" FontWeight="Medium">Aceptar</Button>-->
-                    <Button>
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Command" Value="{Binding AgregarCommand}"></Setter>
-                                <Setter Property="CommandParameter" Value="{Binding .}"></Setter>
-                                <Setter Property="Content" Value="Aceptar"></Setter>
-                                <Setter Property="FontSize" Value="16"></Setter>
-                                <Setter Property="Margin" Value="5"></Setter>
-                                <Setter Property="Padding" Value="3"></Setter>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Editar}">
-                                        <Setter Property="Command" Value="{Binding EditarCommand}"></Setter>
-                                        <Setter Property="Content" Value="Editar"></Setter>
+                                        <Setter Property="Visibility" Value="Hidden"></Setter>
+                                        <Setter Property="Padding" Value="3"></Setter>
+                                        <Setter Property="FontSize" Value="16"></Setter>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Button.Style>
-                    </Button>
-                    <Button Command="{Binding CancelarCommand}" FontSize="15" Margin="5" Padding="3" FontWeight="Medium">Cancelar</Button>
-                </WrapPanel>
-                <!--<Setter Property="FontSize" Value="18"></Setter>
-                <Setter Property="FontWeight" Value="Medium"></Setter>
-                <Setter Property="Margin" Value="8"></Setter>
-                <Setter Property="Padding" Value="5,2,5,2"></Setter>-->
-            </StackPanel>
-        </ScrollViewer>
-    </DockPanel>
+                        </ComboBox.Style>
+                        <x:Static Member="viewmodels:Tipos.Clase"></x:Static>
+                        <x:Static Member="viewmodels:Tipos.Actividad"></x:Static>
+                    </ComboBox>
+
+                    <DockPanel Margin="7,8,7,0">
+                        <Label Width="170">Nombre de la actividad</Label>
+                        <TextBox>
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Text" Value="{Binding Actividad.Nombre}"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="Padding" Value="3"></Setter>
+                                    <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
+                                            <Setter Property="Text" Value="{Binding Clase.Nombre}"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </DockPanel>
+
+                    <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                        <DockPanel Margin="3,10">
+                            <Label Content="Día"></Label>
+                            <ComboBox>
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox">
+                                        <Setter Property="SelectedItem" Value="{Binding Actividad.Dia}"></Setter>
+                                        <Setter Property="SelectedValue" Value="{Binding Actividad.Dia}"></Setter>
+                                        <Setter Property="Width" Value="55"></Setter>
+                                        <Setter Property="FontSize" Value="16"></Setter>
+                                        <Setter Property="SelectedIndex" Value="0"></Setter>
+                                        <Setter Property="MinWidth" Value="95"></Setter>
+                                        <Setter Property="ItemsSource" Value="{Binding ListaDias}"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
+                                                <Setter Property="SelectedItem" Value="{Binding Clase.Dia}"></Setter>
+                                                <Setter Property="SelectedValue" Value="{Binding Clase.Dia}"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                        </DockPanel>
+
+                        <DockPanel Margin="10">
+                            <Label Content="Hora de inicio"></Label>
+                            <xctk:TimePicker>
+                                <xctk:TimePicker.Style>
+                                    <Style TargetType="xctk:TimePicker">
+                                        <Setter Property="Text" Value="{Binding Actividad.HoraInicio}"></Setter>
+                                        <Setter Property="Format" Value="Custom"></Setter>
+                                        <Setter Property="FormatString" Value="H:mm"></Setter>
+                                        <Setter Property="TimeInterval" Value="00:20"></Setter>
+                                        <Setter Property="EndTime" Value="23:00"></Setter>
+                                        <Setter Property="Width" Value="120"></Setter>
+                                        <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
+                                                <Setter Property="Text" Value="{Binding Clase.HoraInicio}"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </xctk:TimePicker.Style>
+                            </xctk:TimePicker>
+                        </DockPanel>
+                        <DockPanel Margin="10">
+                            <Label Content="Hora fin"></Label>
+                            <xctk:TimePicker>
+                                <xctk:TimePicker.Style>
+                                    <Style TargetType="xctk:TimePicker">
+                                        <Setter Property="Text" Value="{Binding Actividad.HoraFin}"></Setter>
+                                        <Setter Property="Format" Value="Custom"></Setter>
+                                        <Setter Property="FormatString" Value="H:mm"></Setter>
+                                        <Setter Property="TimeInterval" Value="00:20"></Setter>
+                                        <Setter Property="StartTime" Value="00:20"></Setter>
+                                        <Setter Property="Width" Value="120"></Setter>
+                                        <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ClaseSeleccionada}" Value="true">
+                                                <Setter Property="Text" Value="{Binding Clase.HoraFin}"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </xctk:TimePicker.Style>
+                            </xctk:TimePicker>
+                        </DockPanel>
+                    </StackPanel>
+
+                    <DockPanel Margin="5">
+                        <Label Width="170">Nombre de la asignatura</Label>
+                        <TextBox Text="{Binding Clase.Asignatura}">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="Padding" Value="3"></Setter>
+                                    <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </DockPanel>
+
+                    <DockPanel Margin="5">
+                        <Label Width="170">Aula</Label>
+                        <TextBox Text="{Binding Clase.Aula}">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="Padding" Value="3"></Setter>
+                                    <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </DockPanel>
+
+                    <DockPanel Margin="5">
+                        <Label Width="170">Nombre del maestro</Label>
+                        <TextBox Text="{Binding Clase.Maestro}">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="IsEnabled" Value="{Binding Path=ClaseSeleccionada}"></Setter>
+                                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="Padding" Value="3"></Setter>
+                                    <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </DockPanel>
+
+                    <StackPanel >
+                        <Label Margin="5,0,5,0">Descripción</Label>
+                        <TextBox Text="{Binding Actividad.Descripcion}">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Height" Value="50"></Setter>
+                                    <Setter Property="Margin" Value="5,2,5,0"></Setter>
+                                    <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                    <Setter Property="Background" Value="#FFBBBBBB"></Setter>
+                                    <Setter Property="IsEnabled" Value="{Binding Path=ActividadSeleccionada}"></Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+
+                    </StackPanel>
+                    <TextBlock Text="{Binding Error}" TextWrapping="Wrap" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="15" Foreground="Red"></TextBlock>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Button>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Command" Value="{Binding AgregarCommand}"></Setter>
+                                    <Setter Property="CommandParameter" Value="{Binding .}"></Setter>
+                                    <Setter Property="Content" Value="Aceptar"></Setter>
+                                    <Setter Property="FontSize" Value="16"></Setter>
+                                    <Setter Property="FontWeight" Value="Medium"></Setter>
+                                    <Setter Property="Margin" Value="5"></Setter>
+                                    <Setter Property="Padding" Value="3"></Setter>
+                                    <Setter Property="Width" Value="80"></Setter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Editar}">
+                                            <Setter Property="Command" Value="{Binding EditarCommand}"></Setter>
+                                            <Setter Property="Content" Value="Editar"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button Command="{Binding CancelarCommand}" FontSize="16" Margin="5" Padding="3" FontWeight="Medium" Width="80">Cancelar</Button>
+                    </WrapPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
 </UserControl>

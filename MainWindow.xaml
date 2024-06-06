@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:SistemaHorario.Views"
         xmlns:viewmodels="clr-namespace:SistemaHorario.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="MainWindow" Height="460" Width="625" Icon="Ico.png">
     <Window.DataContext>
         <viewmodels:HorarioViewModel></viewmodels:HorarioViewModel>
     </Window.DataContext>
@@ -24,7 +24,7 @@
                         <DataTrigger Binding="{Binding Ventana}" Value="{x:Static viewmodels:Ventanas.Eliminar}">
                             <Setter Property="Visibility" Value="Visible"></Setter>
                         </DataTrigger>
-                        
+
                     </Style.Triggers>
                 </Style>
             </views:EliminarView.Style>
@@ -71,30 +71,4 @@
             </ContentControl.Style>
         </ContentControl>
     </Grid>
-
-
-
-    <!--<UniformGrid  Margin="10"  Rows="6" Columns="8">
-            <Button>7:00 - 8:00</Button>
-        
-
-        <Button>Lunes</Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-            <Button></Button>
-        <TextBlock TextWrapping="Wrap">
-    <Run Text="Calculo Vectorial"></Run>
-    <Run Text="CCA6                                                                             "></Run>
-    <Run Text="Dora Lilia Guadiana"></Run>
-        </TextBlock>
-            <Button></Button>
-    </UniformGrid>-->
-
-
-
-
 </Window>

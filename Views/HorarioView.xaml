@@ -7,38 +7,46 @@
              xmlns:viewmodels="clr-namespace:SistemaHorario.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:HorarioViewModel}"
-    d:DesignHeight="450" d:DesignWidth="800">
+    d:DesignHeight="460" d:DesignWidth="625">
     <UserControl.Resources>
         <ContextMenu x:Key="Menu1">
             <MenuItem Header="Editar" Command="{Binding Source={x:Reference HV1}, Path= DataContext.IrEditarCommand }"></MenuItem>
             <MenuItem Header="Eliminar" Command="{Binding Source={x:Reference HV1}, Path= DataContext.VerEliminarCommand }"></MenuItem>
         </ContextMenu>
 
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="FontWeight" Value="Medium"></Setter>
+            <Setter Property="FontSize" Value="15"></Setter>
+        </Style>
     </UserControl.Resources>
 
     <DockPanel>
         <Grid DockPanel.Dock="Top" Background="PowderBlue">
-            <Label  DockPanel.Dock="Top" FontSize="22" FontWeight="Bold" Margin="10,0,0,0">Horario</Label>
+            <Border BorderBrush="Black" BorderThickness="1">
+                <Label DockPanel.Dock="Top" FontSize="22" FontWeight="Bold" Margin="10,0,0,0" HorizontalAlignment="Left">Horario</Label>
+            </Border>
             <Button Command="{Binding IrAgregarCommand}" Margin="0,0,20,0" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent">
-                <Image Source="/Views/agg.png" MaxHeight="35" MaxWidth="35"/>
+                <Image Source="/agg.png" MaxHeight="35" MaxWidth="35"/>
             </Button>
         </Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Background="#5b7576">
+            <Grid Margin="5,0,5,5" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
+                    <ColumnDefinition MinWidth="30"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="0">
-
+                <StackPanel Grid.Column="0" Background="#FF7B8586">
                     <Label Content="Domingo"></Label>
-                    <ListBox Name="Domingo" ItemsSource="{Binding Domingo}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Domingo" ItemsSource="{Binding Domingo}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -55,9 +63,11 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="1">
+                <StackPanel Grid.Column="1" Background="#FF677070">
                     <Label Content="Lunes"></Label>
-                    <ListBox Name="Lunes" ItemsSource="{Binding Lunes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" >
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Lunes" ItemsSource="{Binding Lunes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -71,9 +81,11 @@
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="2">
+                <StackPanel Grid.Column="2" Background="#FF7B8586">
                     <Label Content="Martes"></Label>
-                    <ListBox Name="Martes" ItemsSource="{Binding Martes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Martes" ItemsSource="{Binding Martes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -87,9 +99,11 @@
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="3">
-                    <Label Content="Miercoles"></Label>
-                    <ListBox Name="Miercoles" ItemsSource="{Binding Miercoles}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                <StackPanel Grid.Column="3" Background="#FF677070">
+                    <Label Content="Miercoles" ></Label>
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Miercoles" ItemsSource="{Binding Miercoles}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -103,9 +117,11 @@
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="4">
+                <StackPanel Grid.Column="4" Background="#FF7B8586">
                     <Label Content="Jueves"></Label>
-                    <ListBox Name="Jueves" ItemsSource="{Binding Jueves}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Jueves" ItemsSource="{Binding Jueves}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -119,9 +135,11 @@
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="5">
+                <StackPanel Grid.Column="5" Background="#FF677070">
                     <Label Content="Viernes"></Label>
-                    <ListBox Name="Viernes" ItemsSource="{Binding Viernes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Viernes" ItemsSource="{Binding Viernes}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>
@@ -135,9 +153,11 @@
                     </ListBox>
                 </StackPanel>
 
-                <StackPanel Grid.Column="6">
+                <StackPanel Grid.Column="6" Background="#FF7B8586">
                     <Label Content="Sabado"></Label>
-                    <ListBox Name="Sabado" ItemsSource="{Binding Sabado}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}">
+                    <Polyline Points="0,0 318,0"  Stroke="Black" StrokeThickness="3"></Polyline>
+                    <ListBox Name="Sabado" ItemsSource="{Binding Sabado}" SelectedItem="{Binding Object}" ContextMenu="{StaticResource Menu1}" 
+                             Background="#26BBDCB8" HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel></StackPanel>

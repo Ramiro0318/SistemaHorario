@@ -13,10 +13,10 @@ namespace SistemaHorario.Models
         [PrimaryKey, AutoIncrement]
         public int Id { set; get; }
 
-        [NotNull]
+        [NotNull, MaxLength(64)]
         public string Nombre { set; get; } = null!;
 
-        [NotNull, MaxLength(3)]
+        [NotNull, MaxLength(9)]
         public string Dia { set; get; } = null!;
 
         [NotNull]
@@ -25,13 +25,13 @@ namespace SistemaHorario.Models
         [NotNull]
         public string HoraFin { set; get; } = null!;
 
-        [NotNull]
+        [NotNull, MaxLength(64)]
         public string Asignatura { set; get; } = null!;
 
-        [NotNull]
+        [NotNull, MaxLength(32)]
         public string Aula { set; get; } = null!;
 
-        [NotNull]
+        [NotNull, MaxLength(64)]
         public string Maestro { set; get; } = null!;
     }
 }

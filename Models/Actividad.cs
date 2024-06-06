@@ -15,7 +15,7 @@ namespace SistemaHorario.Models
         [PrimaryKey, AutoIncrement]
         public int Id { set; get; }
 
-        [NotNull]
+        [NotNull, MaxLength(64)]
         public string Nombre { set; get; } = null!;
 
         [NotNull, MaxLength(3)]

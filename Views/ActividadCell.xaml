@@ -5,20 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SistemaHorario.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="460" d:DesignWidth="625"
              xmlns:viewmodels="clr-namespace:SistemaHorario.ViewModels" 
-             d:DataContext="{d:DesignInstance Type=viewmodels:HorarioViewModel}">
-    <StackPanel>
-        <TextBlock Text="{Binding Nombre}"></TextBlock>
-        <TextBlock Text="{Binding Dia}"></TextBlock>
-        <TextBlock Text="{Binding Descripcion}" MinHeight="0"></TextBlock>
-        <TextBlock >
+             d:DataContext="{d:DesignInstance Type=viewmodels:HorarioViewModel}" MaxHeight="110">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="13"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border BorderBrush="DarkGray" BorderThickness="4" Width="72" Background="#05F6F6F6">
+        <StackPanel>
+
+            <TextBlock Text="{Binding Nombre}" FontSize="13.5" FontWeight="DemiBold" TextWrapping="Wrap" TextAlignment="Center"></TextBlock>
+            <TextBlock TextAlignment="Center">
             <Run Text="{Binding HoraInicio}"></Run>
             <Run Text="-"></Run>
             <Run Text="{Binding HoraFin}"></Run>
-        </TextBlock>
-        <TextBlock Text="{Binding Asignatura}" MinHeight="0"></TextBlock>
-        <TextBlock Text="{Binding Aula}" MinHeight="0"></TextBlock>
-        <TextBlock Text="{Binding Maestro}" MinHeight="0"></TextBlock>
-    </StackPanel>
+            </TextBlock>
+
+            <TextBlock  Text="{Binding Descripcion}" TextWrapping="Wrap" MinHeight="0" FontSize="13" Margin="2,0,0,-10"></TextBlock>
+            <!--<TextBlock Text="{Binding Descripcion}" TextWrapping="Wrap" MinHeight="0"></TextBlock>-->
+            <TextBlock Text="{Binding Asignatura}" TextWrapping="Wrap" MinHeight="0" Margin="2,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Aula}" TextWrapping="Wrap" MinHeight="0" Margin="2,0,0,0"></TextBlock>
+            <TextBlock Text="{Binding Maestro}" TextWrapping="Wrap" MinHeight="0" VerticalAlignment="Top" Margin="2,0,0,-1"></TextBlock>
+        </StackPanel>
+    </Border>
 </UserControl>

@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <None Remove="agg.png" />
-    <None Remove="Views\agg.png" />
+    <None Remove="ico.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,7 +22,7 @@
 
   <ItemGroup>
     <Resource Include="agg.png" />
-    <Resource Include="Views\agg.png" />
+    <Resource Include="ico.png" />
   </ItemGroup>
 
 </Project>

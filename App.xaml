@@ -10,10 +10,5 @@
                 <Setter Property="FontWeight" Value="Medium"></Setter>
             </Style.Setters>
         </Style>
-        <!--<Style TargetType="TextBox">
-            <Style.Setters>
-                <Setter Property="Text" Value="a"></Setter>
-            </Style.Setters>
-        </Style>-->
     </Application.Resources>
 </Application>

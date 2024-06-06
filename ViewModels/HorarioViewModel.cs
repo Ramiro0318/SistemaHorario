@@ -25,14 +25,13 @@ namespace SistemaHorario.ViewModels
     {
         AgregarActividad, Editar, Horario, Eliminar
     };
-    public enum Dia { dom, lun, mar, mie, jue, vie, sab };
+    public enum Dia { Domingo, Lunes, Martes, Miercoles, Jueves, Viernes, Sabado };
     public class HorarioViewModel : INotifyPropertyChanged
     {
         private ActividadRespository repositoryAct = new();
         private ClaseRepository repositoryClase = new();
 
-        public ObservableCollection<Actividad> Horario { get; set; } = new();
-        public ObservableCollection<Clase> Horario2 { get; set; } = new();
+        public ObservableCollection<Object> Horario { get; set; } = new();
         public ObservableCollection<Object> Domingo { get; set; } = new();
         public ObservableCollection<Object> Lunes { get; set; } = new();
         public ObservableCollection<Object> Martes { get; set; } = new();
@@ -47,7 +46,7 @@ namespace SistemaHorario.ViewModels
         public string Error { get; set; } = "";
 
         public IEnumerable<Dia> ListaDias => Enum.GetValues(typeof(Dia)).Cast<Dia>();
-        public Dia Dia { get; set; } = Dia.dom;
+        public Dia Dia { get; set; } = Dia.Domingo;
         public IEnumerable<Tipos> ListaT { get; } = new List<Tipos> { Tipos.Clase, Tipos.Actividad };
         private Tipos tipoSeleccionado;
         public Tipos TipoSeleccionado
@@ -59,33 +58,6 @@ namespace SistemaHorario.ViewModels
                 Actualizar(null);
             }
         }
-
-        //public ObservableCollection<string> Horas { get; } = new ObservableCollection<string>
-        //{ "0:00 - 0:59",
-        //  "1:00 - 1:59",
-        //  "2:00 - 2:59",
-        //  "3:00 - 3:59",
-        //  "4:00 - 4:59",
-        //  "5:00 - 5:59",
-        //  "6:00 - 6:59",
-        //  "7:00 - 7:59",
-        //  "8:00 - 8:59",
-        //  "9:00 - 9:59",
-        //  "10:00 - 10:59",
-        //  "11:00 - 11:59",
-        //  "12:00 - 12:59",
-        //  "13:00 - 13:59",
-        //  "14:00 - 14:59",
-        //  "15:00 - 15:59",
-        //  "16:00 - 16:59",
-        //  "17:00 - 17:59",
-        //  "18:00 - 18:59",
-        //  "19:00 - 19:59",
-        //  "20:00 - 20:59",
-        //  "21:00 - 21:59",
-        //  "22:00 - 22:59",
-        //  "23:00 - 23:59",
-        //};
 
         public Ventanas Ventana { get; set; } = Ventanas.Horario;
         public ICommand IrAgregarCommand { get; set; }
@@ -113,35 +85,6 @@ namespace SistemaHorario.ViewModels
 
         public bool ClaseSeleccionada => TipoSeleccionado == Tipos.Clase;
         public bool ActividadSeleccionada => TipoSeleccionado == Tipos.Actividad;
-
-
-        //private void IrEditar(Actividad? a)
-        //{
-        //    a = Actividad;
-        //    if (a != null)
-        //    {
-        //        Actividad = new Actividad
-        //        {
-        //            Id = a.Id,
-        //            Nombre = a.Nombre,
-        //            Dia = a.Dia,
-        //            HoraInicio = a.HoraInicio,
-        //            HoraFin = a.HoraFin,
-        //            Descripcion = a.Descripcion,
-
-        //        };
-        //        Actualizar(nameof(Actividad));
-
-        //        if (Actividad.Descripcion == null)
-        //        { TipoSeleccionado = Tipos.Clase; }
-        //        else { TipoSeleccionado = Tipos.Actividad; }
-        //        Actualizar(nameof(TipoSeleccionado));
-
-        //        Ventana = Ventanas.Editar;
-        //        Actualizar(nameof(Ventana));
-        //    }
-        //}
-
 
         private void IrEditar(Object? o)
         {
@@ -181,14 +124,7 @@ namespace SistemaHorario.ViewModels
 
                     };
                     Actualizar(nameof(Clase));
-
                 }
-
-                //if (Actividad.Descripcion == null)
-                //{ TipoSeleccionado = Tipos.Clase; }
-                //else { TipoSeleccionado = Tipos.Actividad; }
-                //Actualizar(nameof(TipoSeleccionado));
-
 
                 Ventana = Ventanas.Editar;
                 Actualizar(nameof(Ventana));
@@ -242,9 +178,21 @@ namespace SistemaHorario.ViewModels
 
         private void Eliminar()
         {
-            if (Actividad != null)
+            if (Object != null)
             {
-                repositoryAct.Delete(Actividad);
+                var Tipo = Object.GetType();
+                if (Tipo.Name == "Actividad")
+                {
+                    TipoSeleccionado = Tipos.Actividad;
+                    Actividad = (Actividad?)Object;
+                    repositoryAct.Delete(Actividad);
+                }
+                if (Tipo.Name == "Clase")
+                {
+                    TipoSeleccionado = Tipos.Clase;
+                    Clase = (Clase?)Object;
+                    repositoryClase.Delete(Clase);
+                }
                 Cancelar();
             }
         }
@@ -261,8 +209,7 @@ namespace SistemaHorario.ViewModels
 
         private void Cargar()
         {
-            //Horario.Clear();
-            //Horario2.Clear();
+            Horario.Clear();
             Domingo.Clear();
             Lunes.Clear();
             Martes.Clear();
@@ -271,90 +218,89 @@ namespace SistemaHorario.ViewModels
             Viernes.Clear();
             Sabado.Clear();
 
-            //var a = repositoryAct.GetAll();
-            //foreach (var item in a)
-            //{
+            var a = repositoryAct.GetAll();
+            foreach (var item in a)
+            {
+                Horario.Add(item);
+            }
+            var b = repositoryClase.GetAll();
+            foreach (var item in b)
+            {
+                Horario.Add(item);
+            }
 
-            //    Domingo.Add(item);
-            //}
-            //var b = repositoryClase.GetAll();
-            //foreach (var item in b)
-            //{
-            //    Domingo.Add(item);
-            //}
-
-            var domingoAct = repositoryAct.GetDomingo();
+            var domingoAct = repositoryAct.GetDay("Domingo");
             foreach (var item in domingoAct)
             {
                 Domingo.Add(item);
             }
-            var domingoClase = repositoryClase.GetDomingo();
+            var domingoClase = repositoryClase.GetDay("Domingo");
             foreach (var item in domingoClase)
             {
                 Domingo.Add(item);
             }
 
-            var lunesAct = repositoryAct.GetLunes();
+            var lunesAct = repositoryAct.GetDay("Lunes");
             foreach (var item in lunesAct)
             {
                 Lunes.Add(item);
             }
-            var lunesClase = repositoryClase.GetLunes();
+            var lunesClase = repositoryClase.GetDay("Lunes");
             foreach (var item in lunesClase)
             {
                 Lunes.Add(item);
             }
 
-            var martesAct = repositoryAct.GetMartes();
+            var martesAct = repositoryAct.GetDay("Martes");
             foreach (var item in martesAct)
             {
                 Martes.Add(item);
             }
-            var martesClase = repositoryClase.GetMartes();
+            var martesClase = repositoryClase.GetDay("Martes");
             foreach (var item in martesClase)
             {
                 Martes.Add(item);
             }
 
-            var miercolesAct = repositoryAct.GetMiercoles();
+            var miercolesAct = repositoryAct.GetDay("Miercoles");
             foreach (var item in miercolesAct)
             {
                 Miercoles.Add(item);
             }
-            var miercolesClase = repositoryClase.GetMiercoles();
+            var miercolesClase = repositoryClase.GetDay("Miercoles");
             foreach (var item in miercolesClase)
             {
                 Miercoles.Add(item);
             }
 
-            var juevesAct = repositoryAct.GetJueves();
+            var juevesAct = repositoryAct.GetDay("Jueves");
             foreach (var item in juevesAct)
             {
                 Jueves.Add(item);
             }
-            var juevesClase = repositoryClase.GetJueves();
+            var juevesClase = repositoryClase.GetDay("Jueves");
             foreach (var item in juevesClase)
             {
                 Jueves.Add(item);
             }
 
-            var viernesAct = repositoryAct.GetViernes();
+            var viernesAct = repositoryAct.GetDay("Viernes");
             foreach (var item in viernesAct)
             {
                 Viernes.Add(item);
             }
-            var viernesClase = repositoryClase.GetViernes();
+            var viernesClase = repositoryClase.GetDay("Viernes");
             foreach (var item in viernesClase)
             {
                 Viernes.Add(item);
             }
 
-            var sabadoAct = repositoryAct.GetSabado();
+            var sabadoAct = repositoryAct.GetDay("Sabado");
             foreach (var item in sabadoAct)
             {
                 Sabado.Add(item);
             }
-            var sabadoClase = repositoryClase.GetSabado();
+            var sabadoClase = repositoryClase.GetDay("Sabado");
             foreach (var item in sabadoAct)
             {
                 Sabado.Add(item);
@@ -364,6 +310,9 @@ namespace SistemaHorario.ViewModels
 
         private void Validar(Actividad Actividad)
         {
+            TimeOnly HoraInicio = TimeOnly.ParseExact(Actividad.HoraInicio, "H:mm", CultureInfo.InvariantCulture);
+            var HoraFin = TimeOnly.ParseExact(Actividad.HoraFin, "H:mm", CultureInfo.InvariantCulture);
+
             if (string.IsNullOrWhiteSpace(Actividad.Nombre))
             {
                 Error += "Indique el nombre de la actividad";
@@ -375,7 +324,6 @@ namespace SistemaHorario.ViewModels
             if (Actividad.HoraInicio == null || Actividad.HoraFin == null ||
                 TimeOnly.ParseExact(Actividad.HoraInicio, "H:mm", CultureInfo.InvariantCulture) >=
                 TimeOnly.ParseExact(Actividad.HoraFin, "H:mm", CultureInfo.InvariantCulture))
-            //Actividad.HoraFin || Actividad.HoraInicio == Actividad.HoraFin)
             {
                 Error += "\n Indique correctamente la hora";
             }
@@ -383,9 +331,20 @@ namespace SistemaHorario.ViewModels
             {
                 Error += "\n Añada una descripción a la actividad";
             }
+            bool ActEmpalmada = repositoryAct.GetDay(Actividad.Dia).Any(x =>
+            (HoraInicio >= TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraInicio < TimeOnly.ParseExact(x.HoraFin, "H:mm")) ||
+            HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin <= TimeOnly.ParseExact(x.HoraFin, "H:mm"));
+            if (ActEmpalmada)
+            {
+                Error += "\n Esta hora se encuentra ocupada";
+            }
         }
+
         private void Validar(Clase Clase)
         {
+            TimeOnly HoraInicio = TimeOnly.ParseExact(Clase.HoraInicio, "H:mm", CultureInfo.InvariantCulture);
+            var HoraFin = TimeOnly.ParseExact(Clase.HoraFin, "H:mm", CultureInfo.InvariantCulture);
+
             if (string.IsNullOrWhiteSpace(Clase.Nombre))
             {
                 Error += "Indique el nombre de la clase";
@@ -397,15 +356,20 @@ namespace SistemaHorario.ViewModels
             if (Clase.HoraInicio == null || Clase.HoraFin == null ||
                 TimeOnly.ParseExact(Clase.HoraInicio, "H:mm", CultureInfo.InvariantCulture) >=
                 TimeOnly.ParseExact(Clase.HoraFin, "H:mm", CultureInfo.InvariantCulture))
-            //Actividad.HoraFin || Actividad.HoraInicio == Actividad.HoraFin)
             {
                 Error += "\n Indique correctamente la hora";
             }
             if (string.IsNullOrWhiteSpace(Clase.Asignatura) || string.IsNullOrWhiteSpace(Clase.Maestro)
                 || string.IsNullOrWhiteSpace(Clase.Aula))
             {
-
                 Error += "\n Indique correctamente la información de la clase";
+            }
+            bool ClaseEmpalmada = repositoryClase.GetDay(Clase.Dia).Any(x =>
+            (HoraInicio >= TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraInicio < TimeOnly.ParseExact(x.HoraFin, "H:mm")) ||
+            HoraFin > TimeOnly.ParseExact(x.HoraInicio, "H:mm") && HoraFin <= TimeOnly.ParseExact(x.HoraFin, "H:mm"));
+            if (ClaseEmpalmada)
+            {
+                Error += "\n Esta hora se encuentra ocupada";
             }
         }
 
